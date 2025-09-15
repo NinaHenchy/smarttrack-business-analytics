@@ -1,0 +1,75 @@
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: smarttrack-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: SmartTrack2024Root!
+      MYSQL_DATABASE: smarttrack_db
+      MYSQL_USER: smarttrack_user
+      MYSQL_PASSWORD: SmartTrack2024Pass!
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./database/sample_data.sql:/docker-entrypoint-initdb.d/02-sample_data.sql:ro
+    networks:
+      - smarttrack-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "smarttrack_user", "-pSmartTrack2024Pass!"]
+      timeout: 20s
+      retries: 10
+      interval: 30s
+    # Remove the deprecated command line
+    # command: --default-authentication-plugin=mysql_native_password
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: smarttrack-backend
+    restart: unless-stopped
+    environment:
+      # Remove the auth_plugin parameter
+      - DATABASE_URL=mysql+pymysql://smarttrack_user:SmartTrack2024Pass!@mysql:3306/smarttrack_db?charset=utf8mb4
+      - SECRET_KEY=SmartTrack2024SecretKey!ChangeInProduction
+      - LOG_LEVEL=INFO
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - smarttrack-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: smarttrack-frontend
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - smarttrack-network
+    environment:
+      - BACKEND_URL=http://backend:8000
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  smarttrack-network:
+    driver: bridge
