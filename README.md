@@ -33,7 +33,10 @@ flowchart TD
     
 🔹 Components
 
-👤User → Interacts through the Streamlit web interface.
+git add README.md
+git commit -m "fix: simplified Mermaid diagram for GitHub compatibility"
+git push origin main
+User → Interacts through the Streamlit web interface.
 
 Frontend (Streamlit) → Provides dashboards and input forms.
 
