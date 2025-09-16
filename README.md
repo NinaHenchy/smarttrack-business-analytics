@@ -30,19 +30,19 @@ flowchart TD
     C --> D[(MySQL Database)]
     C --> E[Analytics Engine]
     E --> B
+Components
+User → Interacts through the Streamlit web interface
 
-🔹 Components
-User → Interacts through the Streamlit web interface.
+Frontend (Streamlit) → Provides dashboards and input forms
 
-Frontend (Streamlit) → Provides dashboards and input forms.
+Backend (FastAPI) → Handles API requests, authentication, and business logic
 
-Backend (FastAPI) → Handles API requests, authentication, and business logic.
+Database (MySQL) → Stores users, products, sales, and expenses
 
-Database (MySQL) → Stores users, products, sales, and expenses.
+Analytics Engine → Processes data and feeds insights back to the frontend
 
-Analytics Engine → Processes data and feeds insights back to the frontend.
+Docker & Docker Compose → Ensure portability, reproducibility, and easy deployment
 
-Docker & Docker Compose → Ensure portability, reproducibility, and easy deployment.
 
 Tech Stack:
 
