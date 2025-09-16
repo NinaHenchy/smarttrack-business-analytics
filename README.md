@@ -247,6 +247,18 @@ pytest tests/test_backend.py -v
 pytest tests/test_integration.py -v -m integration
 
 
+## 📸 Screenshots
+
+### Dashboard
+[<img src="screenshots/dashboard.png" width="300"/>](screenshots/dashboard.png)
+
+### Sales Management
+[<img src="screenshots/sales-management.png" width="300"/>](screenshots/sales-management.png)
+
+### Expense Tracking
+[<img src="screenshots/expense-tracking.png" width="300"/>](screenshots/expense-tracking.png)
+
+
 ## 🤝 Contributing
 
 Fork the repository
