@@ -19,9 +19,45 @@
 - ✅ **Scalable Architecture** - Grows from single store to enterprise chain
 - ✅ **Modern Web Interface** - Responsive design for desktop and mobile
 
+## Project Structure
+smarttrack-business-analytics/
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── database.py
+│   │   ├── models.py
+│   │   └── routers/
+│   └── requirements.txt
+├── frontend/
+├── database/
+├── docker-compose.yml
+└── Dockerfile.backend
+
+## Database Setup
+The application automatically creates the necessary database tables on first run.
+
+
+## Technology Stack
+
+Backend: FastAPI with Python 3.11
+Database: MySQL 8.0 with SQLAlchemy 2.x
+Frontend: Streamlit
+Containerization: Docker & Docker Compose
+Architecture: Microservices with REST APIs
+
+
 ## 🏗️ System Architecture
 
-[img.png]
+Frontend (Streamlit)
+        |
+        | HTTP Requests
+        |
+Backend API (FastAPI)
+        |
+        | SQL Queries
+        |
+Database (MySQL)
+
 
 Components
 User → Interacts through the Streamlit web interface
@@ -37,50 +73,97 @@ Analytics Engine → Processes data and feeds insights back to the frontend
 Docker & Docker Compose → Ensure portability, reproducibility, and easy deployment
 
 
-Tech Stack:
-
-Frontend: Streamlit 1.29 (Interactive dashboards)
-Backend: FastAPI 0.105 (High-performance API)
-Database: MySQL 8.0 (Production-grade storage)
-Deployment: Docker Compose (Container orchestration)
-
-🚀 Quick Installation (5 Minutes)
+## 🚀 Quick Installation (5 Minutes)
 Prerequisites
 
 Docker Desktop 4.0+
 4GB RAM, 10GB storage
 Internet connection
 
-Installation Steps
+##  Installation Steps
+Clone the repository:
 
-Clone Repository
-
-bashgit clone https://github.com/your-username/smarttrack-business-analytics.git
+git clone https://github.com/NinaHenchy/smarttrack-business-analytics.git
 cd smarttrack-business-analytics
 
-Start Services
+Start the application:
 
-bashdocker-compose up --build -d
+docker-compose up --build -d
 
 Wait for Setup (60 seconds)
 
-bashdocker-compose logs -f
+docker-compose logs -f
 
-Access Applications
 
+✅ Verification
+## Check all services
+docker-compose ps
+
+## Test backend
+curl http://localhost:8000/health
+## Expected response: {"status":"healthy",...}
+
+
+##  Access Applications:
 
 🖥️ Dashboard: http://localhost:8501
 🔧 API Docs: http://localhost:8000/docs
 ❤️ Health Check: http://localhost:8000/health
 
-✅ Verification
-bash# Check all services
+
+## 📚 API Endpoints
+Complete API documentation is available at /docs when the backend is running:
+Key Endpoints
+
+GET /health - Service health check
+GET /api/v1/products/ - List all products
+POST /api/v1/sales/ - Record new sale
+GET /api/v1/analytics/dashboard/summary - Dashboard metrics
+
+Example API Usage
+python import requests
+
+## Get dashboard summary
+response = requests.get("http://localhost:8000/api/v1/analytics/dashboard/summary")
+data = response.json()
+print(f"Today's profit: ₦{data['metrics']['today']['net_profit']}")
+
+
+🔧 Management Commands
+Basic Operations
+bash# Start services
+docker-compose up -d
+
+## View logs  
+docker-compose logs -f [service_name]
+
+## Stop services
+docker-compose down
+
+## Rebuild after code changes
+docker-compose up --build -d
+Database Management
+
+## Access database directly
+docker-compose exec mysql mysql -u smarttrack_user -p smarttrack_db
+
+## Backup database
+docker-compose exec mysql mysqldump -u smarttrack_user -p smarttrack_db > backup.sql
+
+## Reset database (WARNING: Deletes all data)
+docker-compose down -v && docker-compose up -d
+
+## Monitoring
+## Check service health
+docker-compose exec backend curl -f http://localhost:8000/health
+
+## Monitor resource usage
+docker stats
+
+## View container details
 docker-compose ps
 
-# Test backend
-curl http://localhost:8000/health
 
-# Expected response: {"status":"healthy",...}
 📊 Features Overview
 💼 Business Management
 
@@ -103,37 +186,6 @@ Performance Metrics: Revenue, profit margins, and growth trends
 Decision Support: Data-driven business recommendations
 Export Capabilities: Data export for external analysis
 
-🔧 Management Commands
-Basic Operations
-bash# Start services
-docker-compose up -d
-
-# View logs  
-docker-compose logs -f [service_name]
-
-# Stop services
-docker-compose down
-
-# Rebuild after code changes
-docker-compose up --build -d
-Database Management
-bash# Access database directly
-docker-compose exec mysql mysql -u smarttrack_user -p smarttrack_db
-
-# Backup database
-docker-compose exec mysql mysqldump -u smarttrack_user -p smarttrack_db > backup.sql
-
-# Reset database (WARNING: Deletes all data)
-docker-compose down -v && docker-compose up -d
-Monitoring
-bash# Check service health
-docker-compose exec backend curl -f http://localhost:8000/health
-
-# Monitor resource usage
-docker stats
-
-# View container details
-docker-compose ps
 
 📱 Usage Guide
 Recording Your First Sale
@@ -186,57 +238,40 @@ SECRET_KEY=your-super-secure-random-key-here
 LOG_LEVEL=WARNING
 DEBUG=False
 
-📚 API Documentation
-Complete API documentation is available at /docs when the backend is running:
-Key Endpoints
-
-GET /health - Service health check
-GET /api/v1/products/ - List all products
-POST /api/v1/sales/ - Record new sale
-GET /api/v1/analytics/dashboard/summary - Dashboard metrics
-
-Example API Usage
-pythonimport requests
-
-# Get dashboard summary
-response = requests.get("http://localhost:8000/api/v1/analytics/dashboard/summary")
-data = response.json()
-print(f"Today's profit: ₦{data['metrics']['today']['net_profit']}")
 
 🧪 Testing
 bash# Install test dependencies
 pip install pytest pytest-asyncio httpx
 
-# Run all tests
+## Run all tests
 pytest tests/ -v
 
-# Run specific test categories
+## Run specific test categories
 pytest tests/test_backend.py -v
 pytest tests/test_integration.py -v -m integration
+
 
 🤝 Contributing
 
 Fork the repository
-Create feature branch: git checkout -b feature/amazing-feature
-Commit changes: git commit -m 'Add amazing feature'
-Push to branch: git push origin feature/amazing-feature
-Open Pull Request
+Create a feature branch (git checkout -b feature/AmazingFeature)
+Commit your changes (git commit -m 'Add some AmazingFeature')
+Push to the branch (git push origin feature/AmazingFeature)
+Open a Pull Request
 
-📞 Support & Community
-
-🐛 Bug Reports: GitHub Issues
-💡 Feature Requests: GitHub Discussions
-📖 Documentation: Project Wiki
 
 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-🎉 Acknowledgments
+This project is licensed under the MIT License.
 
+🎉 Acknowledgments
 Built with ❤️ for small business owners worldwide
 Powered by modern Python ecosystem
-Designed for growth and scalability
-Community-driven development
+Designed for growth and scalability.
+
+📞 Contact
+Nina Henchy - GitHub: @NinaHenchy
+Project Link: https://github.com/NinaHenchy/smarttrack-business-analytics
 
 
 ⭐ If SmartTrack helped your business, please star this repository!
-Get Started Now | View Live Demo | API Documentation
+
