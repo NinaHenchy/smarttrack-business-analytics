@@ -20,42 +20,29 @@
 - ✅ **Modern Web Interface** - Responsive design for desktop and mobile
 
 ## 🏗️ Architecture
-The SmartTrack Business Analytics Platform follows a modern, modular architecture:
+The SmartTrack Business Analytics platform is built with a modular, containerized architecture. 
+Each component is isolated in its own service but connected through Docker Compose.
 ```mermaid
-graph TD
-    A["🖥️ Frontend (Streamlit)"] --> B["⚡ Backend (FastAPI)"]
-    B --> C["🗄️ Database (MySQL)"]
+flowchart TD
+    A[👤 User] --> B[Frontend (Streamlit)]
+    B --> C[Backend (FastAPI)]
+    C --> D[(MySQL Database)]
+    C --> E[Analytics Engine]
+    E --> B
 
-    A --> D["🐳 Docker & Docker Compose"]
-    B --> D
-    C --> D
-
-    D --> E["🌐 Git & GitHub"]
-
-    %% Styling
-    classDef frontend fill=#ffddc1,stroke=#333,stroke-width=1px;
-    classDef backend fill=#c1e1ff,stroke=#333,stroke-width=1px;
-    classDef database fill=#d4f4dd,stroke=#333,stroke-width=1px;
-    classDef infra fill=#f9f9c1,stroke=#333,stroke-width=1px;
-    classDef vcs fill=#e0c1ff,stroke=#333,stroke-width=1px;
-
-    class A frontend;
-    class B backend;
-    class C database;
-    class D infra;
-    class E vcs;
     
-🔎 Explanation
+🔹 Components
+👤 User → Interacts through the Streamlit web interface.
 
-Frontend (Streamlit) – Provides an interactive dashboard for users to visualize analytics and manage sales, expenses, and product data.
+Frontend (Streamlit) → Provides dashboards and input forms.
 
-Backend (FastAPI) – Serves as the API layer, handling requests from the frontend, performing business logic, and communicating with the database.
+Backend (FastAPI) → Handles API requests, authentication, and business logic.
 
-Database (MySQL) – Stores structured business data such as sales, products, and expenses.
+Database (MySQL) → Stores users, products, sales, and expense records.
 
-Docker & Docker Compose – Containerizes the entire stack for consistency across development and production.
+Analytics Engine → Processes data and feeds insights back to the frontend.
 
-Git & GitHub – Provides version control, collaboration, and CI/CD integration for deployments.
+Docker & Docker Compose → Ensure portability, reproducibility, and easy deployment.
 
 
 Tech Stack:
