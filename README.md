@@ -19,9 +19,10 @@
 - ✅ **Scalable Architecture** - Grows from single store to enterprise chain
 - ✅ **Modern Web Interface** - Responsive design for desktop and mobile
 
-## 🏗️ Architecture
-The SmartTrack Business Analytics platform is built with a modular, containerized architecture. 
-Each component is isolated in its own service but connected through Docker Compose.
+## 🏗️ System Architecture
+
+The SmartTrack Business Analytics platform is built with a modular, containerized architecture.
+
 ```mermaid
 flowchart TD
     A[User] --> B[Frontend: Streamlit]
@@ -33,9 +34,6 @@ flowchart TD
     
 🔹 Components
 
-git add README.md
-git commit -m "fix: simplified Mermaid diagram for GitHub compatibility"
-git push origin main
 User → Interacts through the Streamlit web interface.
 
 Frontend (Streamlit) → Provides dashboards and input forms.
@@ -47,8 +45,6 @@ Database (MySQL) → Stores users, products, sales, and expenses.
 Analytics Engine → Processes data and feeds insights back to the frontend.
 
 Docker & Docker Compose → Ensure portability, reproducibility, and easy deployment.
-
-
 Tech Stack:
 
 Frontend: Streamlit 1.29 (Interactive dashboards)
