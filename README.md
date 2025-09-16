@@ -20,14 +20,43 @@
 - ✅ **Modern Web Interface** - Responsive design for desktop and mobile
 
 ## 🏗️ Architecture
-
+The SmartTrack Business Analytics Platform follows a modern, modular architecture:
 ```mermaid
-graph TB
-    A[Streamlit Frontend] --> B[FastAPI Backend]
-    B --> C[MySQL Database]
-    D[Docker Compose] --> A
-    D --> B  
-    D --> C
+graph TD
+    A["🖥️ Frontend (Streamlit)"] --> B["⚡ Backend (FastAPI)"]
+    B --> C["🗄️ Database (MySQL)"]
+
+    A --> D["🐳 Docker & Docker Compose"]
+    B --> D
+    C --> D
+
+    D --> E["🌐 Git & GitHub"]
+
+    %% Styling
+    classDef frontend fill=#ffddc1,stroke=#333,stroke-width=1px;
+    classDef backend fill=#c1e1ff,stroke=#333,stroke-width=1px;
+    classDef database fill=#d4f4dd,stroke=#333,stroke-width=1px;
+    classDef infra fill=#f9f9c1,stroke=#333,stroke-width=1px;
+    classDef vcs fill=#e0c1ff,stroke=#333,stroke-width=1px;
+
+    class A frontend;
+    class B backend;
+    class C database;
+    class D infra;
+    class E vcs;
+    
+🔎 Explanation
+
+Frontend (Streamlit) – Provides an interactive dashboard for users to visualize analytics and manage sales, expenses, and product data.
+
+Backend (FastAPI) – Serves as the API layer, handling requests from the frontend, performing business logic, and communicating with the database.
+
+Database (MySQL) – Stores structured business data such as sales, products, and expenses.
+
+Docker & Docker Compose – Containerizes the entire stack for consistency across development and production.
+
+Git & GitHub – Provides version control, collaboration, and CI/CD integration for deployments.
+
 
 Tech Stack:
 
