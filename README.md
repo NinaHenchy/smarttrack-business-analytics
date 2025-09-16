@@ -130,7 +130,7 @@ print(f"Today's profit: ₦{data['metrics']['today']['net_profit']}")
 
 
 ## 🔧 Management Commands
-Basic Operations
+### Basic Operations
 
 ### Start services
 docker-compose up -d
@@ -265,7 +265,7 @@ Powered by modern Python ecosystem
 Designed for growth and scalability.
 
 ## 📞 Contact
-Nina Henchy - GitHub: @NinaHenchy
+### Nina Henchy - GitHub: @NinaHenchy
 Project Link: https://github.com/NinaHenchy/smarttrack-business-analytics
 
 
