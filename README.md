@@ -37,7 +37,7 @@ smarttrack-business-analytics/
 The application automatically creates the necessary database tables on first run.
 
 
-## Technology Stack
+## ⚙️ Technology Stack
 
 Backend: FastAPI with Python 3.11
 Database: MySQL 8.0 with SQLAlchemy 2.x
@@ -267,7 +267,6 @@ Designed for growth and scalability.
 ## 📞 Contact
 ### Nina Henchy - GitHub: @NinaHenchy
 Project Link: https://github.com/NinaHenchy/smarttrack-business-analytics
-
 
 ⭐ If SmartTrack helped your business, please star this repository!
 
