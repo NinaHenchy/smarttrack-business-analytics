@@ -21,16 +21,7 @@
 
 ## 🏗️ System Architecture
 
-The SmartTrack Business Analytics platform is built with a modular, containerized architecture.
-
-```mermaid
-flowchart TD
-    A[User] --> B[Frontend: Streamlit]
-    B --> C[Backend: FastAPI]
-    C --> D[(MySQL Database)]
-    C --> E[Analytics Engine]
-    E --> B
-
+[img.png]
 
 Components
 User → Interacts through the Streamlit web interface
