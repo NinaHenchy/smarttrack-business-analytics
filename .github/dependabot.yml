@@ -1,0 +1,31 @@
+version: 2
+updates:
+  # Python backend dependencies
+  - package-ecosystem: "pip"
+    directory: "/backend" # Location of backend/requirements.txt
+    schedule:
+      interval: "weekly"
+
+  # Python frontend dependencies
+  - package-ecosystem: "pip"
+    directory: "/frontend" # Location of frontend/requirements.txt
+    schedule:
+      interval: "weekly"
+
+  # Docker backend image
+  - package-ecosystem: "docker"
+    directory: "/backend" # Location of Dockerfile.backend
+    schedule:
+      interval: "weekly"
+
+  # Docker frontend image
+  - package-ecosystem: "docker"
+    directory: "/frontend" # Location of Dockerfile.frontend
+    schedule:
+      interval: "weekly"
+
+  # Root docker-compose dependencies
+  - package-ecosystem: "docker"
+    directory: "/" # Location of docker-compose.yml
+    schedule:
+      interval: "weekly"
