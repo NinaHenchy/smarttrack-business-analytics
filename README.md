@@ -30,6 +30,8 @@ flowchart TD
     C --> D[(MySQL Database)]
     C --> E[Analytics Engine]
     E --> B
+
+
 Components
 User → Interacts through the Streamlit web interface
 
