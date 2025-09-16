@@ -24,21 +24,22 @@ The SmartTrack Business Analytics platform is built with a modular, containerize
 Each component is isolated in its own service but connected through Docker Compose.
 ```mermaid
 flowchart TD
-    A[👤 User] --> B[Frontend (Streamlit)]
-    B --> C[Backend (FastAPI)]
+    A[User] --> B[Frontend: Streamlit]
+    B --> C[Backend: FastAPI]
     C --> D[(MySQL Database)]
     C --> E[Analytics Engine]
     E --> B
 
     
 🔹 Components
-👤 User → Interacts through the Streamlit web interface.
+
+👤User → Interacts through the Streamlit web interface.
 
 Frontend (Streamlit) → Provides dashboards and input forms.
 
 Backend (FastAPI) → Handles API requests, authentication, and business logic.
 
-Database (MySQL) → Stores users, products, sales, and expense records.
+Database (MySQL) → Stores users, products, sales, and expenses.
 
 Analytics Engine → Processes data and feeds insights back to the frontend.
 
