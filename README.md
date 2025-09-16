@@ -95,8 +95,8 @@ Wait for Setup (60 seconds)
 docker-compose logs -f
 
 
-✅ Verification
-## Check all services
+## ✅ Verification
+### Check all services
 docker-compose ps
 
 ## Test backend
@@ -120,104 +120,100 @@ GET /api/v1/products/ - List all products
 POST /api/v1/sales/ - Record new sale
 GET /api/v1/analytics/dashboard/summary - Dashboard metrics
 
-Example API Usage
+## Example API Usage
 python import requests
 
-## Get dashboard summary
+### Get dashboard summary
 response = requests.get("http://localhost:8000/api/v1/analytics/dashboard/summary")
 data = response.json()
 print(f"Today's profit: ₦{data['metrics']['today']['net_profit']}")
 
 
-🔧 Management Commands
+## 🔧 Management Commands
 Basic Operations
-bash# Start services
+
+### Start services
 docker-compose up -d
 
-## View logs  
+### View logs  
 docker-compose logs -f [service_name]
 
-## Stop services
+### Stop services
 docker-compose down
 
-## Rebuild after code changes
+### Rebuild after code changes
 docker-compose up --build -d
 Database Management
 
-## Access database directly
+### Access database directly
 docker-compose exec mysql mysql -u smarttrack_user -p smarttrack_db
 
-## Backup database
+### Backup database
 docker-compose exec mysql mysqldump -u smarttrack_user -p smarttrack_db > backup.sql
 
-## Reset database (WARNING: Deletes all data)
+### Reset database (WARNING: Deletes all data)
 docker-compose down -v && docker-compose up -d
 
-## Monitoring
-## Check service health
+### Monitoring
+### Check service health
 docker-compose exec backend curl -f http://localhost:8000/health
 
-## Monitor resource usage
+### Monitor resource usage
 docker stats
 
-## View container details
+### View container details
 docker-compose ps
 
 
-📊 Features Overview
-💼 Business Management
+## 📊 Features Overview
 
+💼 Business Management
 Sales Recording: Quick transaction entry with automatic inventory updates
 Expense Tracking: Categorized expense management with receipt tracking
 Product Management: Inventory control with profit margin calculations
 Real-time Dashboard: Live business metrics and KPIs
 
 📈 Analytics & Reporting
-
 Profit Analysis: Daily, monthly, and yearly profitability reports
 Product Performance: Best-selling and most profitable product insights
 Expense Analytics: Category-wise expense breakdown and trends
 Visual Charts: Interactive graphs powered by Plotly
 
 🎯 Business Intelligence
-
 Stock Alerts: Low inventory notifications
 Performance Metrics: Revenue, profit margins, and growth trends
 Decision Support: Data-driven business recommendations
 Export Capabilities: Data export for external analysis
 
 
-📱 Usage Guide
-Recording Your First Sale
-
+## 📱 Usage Guide
+### Recording Your First Sale
 Navigate to Sales Management → Record Sale
 Select products and quantities
 Add customer information (optional)
 Complete the transaction
 View updated inventory and dashboard metrics
 
-Managing Products
-
+### Managing Products
 Go to Product Management → Add Product
 Enter product details and pricing
 Set stock levels and minimum thresholds
-Monitor profit margins automatically
 
-Tracking Expenses
+### Monitor profit margins automatically
 
+### Tracking Expenses
 Access Expense Tracking → Record Expense
 Categorize expenses for better reporting
 Add vendor and receipt information
 View expense analytics and trends
 
-Analyzing Performance
-
+### Analyzing Performance
 Visit Analytics & Reports
 Review product profitability reports
 Analyze sales trends and patterns
 Make data-driven business decisions
 
-🔒 Security & Production
+## 🔒 Security & Production
 Environment Configuration
 bash# Copy and customize environment file
 cp .env.example .env
@@ -232,14 +228,14 @@ Production Checklist
  Enable access logging
  Set up monitoring alerts
 
-Sample Production Environment
+## Sample Production Environment
 envDATABASE_URL=mysql+pymysql://prod_user:SecurePass123!@mysql:3306/smarttrack_prod
 SECRET_KEY=your-super-secure-random-key-here
 LOG_LEVEL=WARNING
 DEBUG=False
 
 
-🧪 Testing
+## 🧪 Testing
 bash# Install test dependencies
 pip install pytest pytest-asyncio httpx
 
@@ -251,7 +247,7 @@ pytest tests/test_backend.py -v
 pytest tests/test_integration.py -v -m integration
 
 
-🤝 Contributing
+## 🤝 Contributing
 
 Fork the repository
 Create a feature branch (git checkout -b feature/AmazingFeature)
@@ -260,15 +256,15 @@ Push to the branch (git push origin feature/AmazingFeature)
 Open a Pull Request
 
 
-📄 License
+## 📄 License
 This project is licensed under the MIT License.
 
-🎉 Acknowledgments
+## 🎉 Acknowledgments
 Built with ❤️ for small business owners worldwide
 Powered by modern Python ecosystem
 Designed for growth and scalability.
 
-📞 Contact
+## 📞 Contact
 Nina Henchy - GitHub: @NinaHenchy
 Project Link: https://github.com/NinaHenchy/smarttrack-business-analytics
 
