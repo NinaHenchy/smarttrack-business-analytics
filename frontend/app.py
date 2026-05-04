@@ -150,6 +150,11 @@ def show_dashboard():
 
     try:
         dashboard_data = api_client.get_dashboard_summary() if api_client else load_demo_dashboard()
+
+        if not isinstance(dashboard_data, dict):
+            st.info("Demo mode: Backend API is not connected. Showing sample dashboard data.")
+            dashboard_data = load_demo_dashboard()
+
     except Exception:
         st.info("Demo mode: Backend API is not connected. Showing sample dashboard data.")
         dashboard_data = load_demo_dashboard()
