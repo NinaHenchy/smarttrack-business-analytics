@@ -182,6 +182,50 @@ def backend_unavailable_message():
         "Run the project with Docker to use the full FastAPI and MySQL system."
     )
 
+def show_demo_dashboard():
+    """Portfolio demo dashboard when backend is unavailable."""
+
+    st.info("Portfolio demo mode: showing sample business analytics.")
+
+    # Sample metrics
+    sales_today = 185000
+    expenses_today = 97000
+    profit_today = 88000
+    margin_today = 47.6
+
+    st.subheader("🎯 Today's Performance")
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric("💰 Sales", format_currency(sales_today))
+    with col2:
+        st.metric("💸 Expenses", format_currency(expenses_today))
+    with col3:
+        st.metric("📈 Profit", format_currency(profit_today))
+    with col4:
+        st.metric("📊 Margin", f"{margin_today:.1f}%")
+
+    st.subheader("📈 Sample Trend")
+
+    df = pd.DataFrame({
+        "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        "Sales": [1200000, 1350000, 1500000, 1420000, 1680000, 1850000],
+        "Expenses": [750000, 820000, 900000, 870000, 940000, 970000],
+    })
+
+    df["Profit"] = df["Sales"] - df["Expenses"]
+
+    fig = px.line(df, x="Month", y=["Sales", "Expenses", "Profit"], markers=True)
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.subheader("📋 Sample Activity")
+
+    st.dataframe(pd.DataFrame({
+        "Date": ["2024-05-01", "2024-05-02"],
+        "Amount": [120000, 85000],
+        "Customer": ["Client A", "Client B"]
+    }), use_container_width=True)
 
 def show_dashboard():
     """Main business dashboard"""
@@ -196,11 +240,7 @@ def show_dashboard():
         dashboard_data = None
 
     if not dashboard_data:
-        backend_unavailable_message()
-        st.info(
-            "The full dashboard is available when running the complete Docker stack: "
-            "Streamlit frontend, FastAPI backend, and MySQL database."
-        )
+        show_demo_dashboard()
         return
 
     metrics = dashboard_data.get('metrics', {}) or {}
