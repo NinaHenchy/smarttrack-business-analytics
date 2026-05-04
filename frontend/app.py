@@ -295,6 +295,12 @@ def show_dashboard():
     with tab1:
         try:
             recent_sales_data = api_client.get_sales(limit=5) if api_client else load_demo_sales()
+
+            if not recent_sales_data:
+                recent_sales_data = load_demo_sales()
+
+        except Exception:
+            recent_sales_data = load_demo_sales()
         except Exception:
             recent_sales_data = load_demo_sales()
 
@@ -451,7 +457,12 @@ def show_sales_history():
 
         sales_df = pd.DataFrame(sales)
         ensure_numeric_df(sales_df, ["total_amount", "discount_amount"])
-        sales_df["sale_date"] = pd.to_datetime(sales_df["sale_date"]).dt.strftime("%Y-%m-%d")
+        if not sales_df.empty and "sale_date" in sales_df.columns:
+            sales_df["sale_date"] = pd.to_datetime(sales_df["sale_date"]).dt.strftime("%Y-%m-%d")
+        else:
+            st.warning("No valid sales data available. Showing demo data.")
+            sales_df = pd.DataFrame(load_demo_sales())
+            sales_df["sale_date"] = pd.to_datetime(sales_df["sale_date"]).dt.strftime("%Y-%m-%d")
 
         st.dataframe(sales_df.fillna("-"), use_container_width=True)
 
